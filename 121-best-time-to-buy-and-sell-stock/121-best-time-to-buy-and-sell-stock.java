@@ -1,25 +1,24 @@
 class Solution {
     public int maxProfit(int[] prices) {
-        // thought: 
-        // left is buy
-        // right is sell
+    // use two pointers to represent left and right/buy and sell
+    // calculate current profit and compare to the max profit
+        int left = 0;
+        int right = 1;
+        int current = 0;
+        int max = 0;
         
-        int profit = 0;
-        int maxProfit = 0;
-        int l = 0;
-        int r = 0;
-        
-        for (int i=0; i<prices.length; i++) {
-            if(prices[l] < prices[r]) {
-                profit = prices[r] - prices[l];
-                maxProfit = Math.max(maxProfit, profit);
+        while (right < prices.length) {
+            if (prices[left] < prices[right]) {
+                current = prices[right] - prices[left];
+                max = Math.max(max, current);
             } else {
-                l = r;
+                left = right;
             }
             
-            r++;
+            right++;
         }
         
-        return maxProfit;
+        return max;
+        
     }
 }
