@@ -1,40 +1,25 @@
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        // instantiate a new hash map 
-        // for every element in nums array
-        // calculate the difference between target and the element value
-        // if map contain the complement of element value
-        // return new int array {position of element complement, and position of element}
+        // make a map to store nums[i] and index position 
+        // iterate through the array
+        // calculate the complement for target (target minus the each number in the array)
+        // if complement is in the map then return int[] result
+        // if not put the number in the array
         
-        // if map does not contains the complement of the element value
-        // add the element value as key with its position as value
-        
-//         Map<Integer, Integer> map = new HashMap<>();
-        
-//         for(int i = 0; i < nums.length - 1; i ++) {
-//             int complement = target - nums[i];
-//             if(map.containsKey(complement)) {
-//                 return new int[] {map.get(complement), i};
-//             }
-            
-//             map.put(nums[i], i);
-//         }
-        
-//         return null;
+        // finally throw an exception if no match pair can be found
         
         
-        Map<Integer, Integer>  map = new HashMap<>(); 
-        
-        for(int i=0; i < nums.length; i++) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i=0; i < nums.length; i++) {
             int complement = target - nums[i];
-            if(map.containsKey(complement)) {
-                return new int[]{map.get(complement), i};
+            
+            if (map.containsKey(complement)) {
+                return new int[] {map.get(complement), i};
             }
             
-            map.put(nums[i], i);
+            map.put (nums[i], i);
         }
         
-        return null;
-            
+        throw new IllegalArgumentException("ss");
     }
 }
