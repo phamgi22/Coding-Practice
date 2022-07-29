@@ -1,20 +1,21 @@
 class Solution {
-   public int[] intersect(int[] nums1, int[] nums2) {
-    if (nums1.length > nums2.length) {
-        return intersect(nums2, nums1);
-    }
-    HashMap<Integer, Integer> m = new HashMap<>();
-    for (int n : nums1) {
-        m.put(n, m.getOrDefault(n, 0) + 1);
-    }
-    int k = 0;
-    for (int n : nums2) {
-        int cnt = m.getOrDefault(n, 0);
-        if (cnt > 0) {
-            nums1[k++] = n;
-            m.put(n, cnt - 1);
+    public int[] intersect(int[] nums1, int[] nums2) {
+        if (nums1.length > nums2.length) return intersect(nums2, nums1);
+        Map<Integer,Integer> map = new HashMap<>();
+        for (int num : nums1) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
         }
+        
+        List<Integer> output = new ArrayList<>();
+        for (int num : nums2) {
+            int count = map.getOrDefault(num, 0);
+            if (count > 0) {
+                output.add(num);
+                map.put(num, map.get(num) - 1);
+                count--;
+            }
+        }
+        
+        return output.stream().mapToInt(Integer::intValue).toArray();
     }
-    return Arrays.copyOfRange(nums1, 0, k);
-}
 }
