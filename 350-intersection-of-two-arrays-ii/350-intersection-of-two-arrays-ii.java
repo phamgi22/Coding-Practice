@@ -6,16 +6,18 @@ class Solution {
             map.put(num, map.getOrDefault(num, 0) + 1);
         }
         
-        List<Integer> output = new ArrayList<>();
+        // List<Integer> output = new ArrayList<>();
+        int k = 0;
         for (int num : nums2) {
             int count = map.getOrDefault(num, 0);
             if (count > 0) {
-                output.add(num);
+                // output.add(num);
+                nums1[k++] = num;
                 map.put(num, map.get(num) - 1);
                 count--;
             }
         }
         
-        return output.stream().mapToInt(Integer::intValue).toArray();
+        return Arrays.copyOfRange(nums1, 0, k);
     }
 }
