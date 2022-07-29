@@ -8,8 +8,8 @@ class Solution {
         for (int i=1; i<numRows; i++) {
             List<Integer> pre_row = triangle.get(i-1);
             List<Integer> cur_row = new ArrayList<>();
-            
             cur_row.add(1);
+            
             for (int j=1; j<i; j++) {
                 cur_row.add(pre_row.get(j-1) + pre_row.get(j));
             }
