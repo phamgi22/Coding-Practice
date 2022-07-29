@@ -14,10 +14,6 @@ class Solution {
                 i--;
                 p2--;
             }
-            
-            System.out.println("p1: " + p1);
-            System.out.println("p2: " + p2);
-            System.out.println("i: " + i);
         }
     }
 }
