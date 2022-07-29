@@ -10,15 +10,15 @@ class Solution {
         // if sell day prices is less than buy day price,  update buy date to sell day, the cheaper
         // increment selling day
         
-        int buy = 0;
+       int buy = 0;
         int sell = 1;
         int current = 0;
         int max = 0;
-    
-        while (sell < prices.length) {
-            if (prices[buy] < prices[sell]) {
+        
+        while(sell < prices.length) {
+            if(prices[sell] > prices[buy]) {
                 current = prices[sell] - prices[buy];
-                max = Math.max(current, max);
+                max = Math.max(max, current);
             } else {
                 buy = sell;
             }
