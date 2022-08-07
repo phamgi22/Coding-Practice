@@ -1,15 +1,20 @@
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        // make a map to store nums[i] and index position 
-        // iterate through the array
-        // calculate the complement for target (target minus the each number in the array)
-        // if complement is in the map then return int[] result
-        // if not put the number in the array
+        /*
+        Give:
+        - array of integers nums
+        - integer target
+        - return indices of the two numbers that added up to target
+        - can return in any order
+        - is it guarantee that there will be a correct answer
         
-        // finally throw an exception if no match pair can be found
+        - for each number in array
+        - search in map if there's a number x where x + number = target
         
+        */
         
         Map<Integer,Integer> map = new HashMap<>();
+        
         for (int i = 0; i < nums.length; i++) {
             int complement = target - nums[i];
             if (!map.containsKey(complement)) {
@@ -20,5 +25,6 @@ class Solution {
         }
         
         return new int[0];
+        
     }
 }
