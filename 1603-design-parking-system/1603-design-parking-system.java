@@ -12,31 +12,19 @@ class ParkingSystem {
     public boolean addCar(int carType) {
         // if cartype = 1 check if there there is slot in big
         if (carType == 1) {
-            if (this.big == 0) {
-                return false;
-            } else {
-                this.big--;
-                return true;
+            return --this.big >= 0;
             }
-        }
+        
         
         if (carType == 2) {
-            if (this.medium == 0) {
-                return false;
-            } else {
-                this.medium--;
-                return true;
+            return --this.medium >= 0;
             }
-        }
         
+
         if (carType == 3) {
-            if (this.small == 0) {
-                return false;
-            } else {
-                this.small--;
-                return true;
+            return --this.small >= 0;
             }
-        }
+        
         
         return false;
     }
