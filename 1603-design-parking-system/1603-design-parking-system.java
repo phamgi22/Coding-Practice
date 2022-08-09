@@ -1,27 +1,27 @@
 class ParkingSystem {
 
-    int[] size = new int[3];
-    int[] available = new int[3];
+    int[] spaces = new int[3];
+    int[] parked = new int[3];
     
     public ParkingSystem(int big, int medium, int small) {
-        size[0] = big;
-        size[1] = medium;
-        size[2] = small;
+        spaces[0] = big;
+        spaces[1] = medium;
+        spaces[2] = small;
     }
     
     public boolean addCar(int carType) {
         switch(carType){
             case 1:
-                available[0]++;
-                if(available[0]>size[0]) return false;
+                parked[0]++;
+                if(parked[0]>spaces[0]) return false;
                 break;
             case 2:
-                available[1]++;
-                if(available[1]>size[1]) return false;
+                parked[1]++;
+                if(parked[1]>spaces[1]) return false;
                 break; 
             case 3:
-                available[2]++;
-                if(available[2]>size[2]) return false;
+                parked[2]++;
+                if(parked[2]>spaces[2]) return false;
                 break;
         }
         
