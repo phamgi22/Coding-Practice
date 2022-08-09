@@ -1,35 +1,33 @@
 class ParkingSystem {
-    public int big;
-    public int medium;
-    public int small;
+
+    int[] size = new int[3];
+    int[] available = new int[3];
     
     public ParkingSystem(int big, int medium, int small) {
-        this.big = big;
-        this.medium = medium;
-        this.small = small;
+        size[0] = big;
+        size[1] = medium;
+        size[2] = small;
     }
     
     public boolean addCar(int carType) {
-        // if cartype = 1 check if there there is slot in big
-        if (carType == 1) {
-            return --this.big >= 0;
-            }
+        switch(carType){
+            case 1:
+                available[0]++;
+                if(available[0]>size[0]) return false;
+                break;
+            case 2:
+                available[1]++;
+                if(available[1]>size[1]) return false;
+                break; 
+            case 3:
+                available[2]++;
+                if(available[2]>size[2]) return false;
+                break;
+        }
         
-        
-        if (carType == 2) {
-            return --this.medium >= 0;
-            }
-        
-
-        if (carType == 3) {
-            return --this.small >= 0;
-            }
-        
-        
-        return false;
+        return true;
     }
 }
-
 /**
  * Your ParkingSystem object will be instantiated and called as such:
  * ParkingSystem obj = new ParkingSystem(big, medium, small);
