@@ -22,14 +22,12 @@ class Solution {
             Arrays.sort(chars);
             String sortedString = new String(chars);
             
-            if (!map.containsKey(sortedString)) {
-                map.put(sortedString, new ArrayList<>());
-            }
-            
+            if (!map.containsKey(sortedString)) map.put(sortedString, new ArrayList<>());
             map.get(sortedString).add(string);
         }
         
         groups.addAll(map.values());
         return groups;
+            
     }
 }
