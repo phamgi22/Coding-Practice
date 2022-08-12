@@ -24,6 +24,6 @@ class Solution {
             
         }
         
-        return (x == 0 && y == 0) || (dirX != 0 || dirY != 1);
+        return (x == 0 && y == 0) || dirX != 0 || dirY != 1;
     }
 }
