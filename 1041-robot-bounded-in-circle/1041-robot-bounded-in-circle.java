@@ -19,8 +19,8 @@ class Solution {
                 dirX = temp;
             }
             
-            System.out.println("dirX: " + dirX);
-            System.out.println("dirY: " + dirY);
+            // System.out.println("dirX: " + dirX);
+            // System.out.println("dirY: " + dirY);
             
         }
         
