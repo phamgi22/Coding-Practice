@@ -1,25 +1,55 @@
 class Solution {
     public char slowestKey(int[] releaseTimes, String keysPressed) {
-        int n = releaseTimes.length;
-      char[] keys = keysPressed.toCharArray();
-      char ans = 'a';
-      int longestDuration = 0;
-      int pressedTime;
-      int duration;
-      for (int i = 0; i < n; i++) {
-          if (i == 0) {
-              pressedTime = 0;
-          } else {
-              pressedTime = releaseTimes[i - 1];
-          }
-          duration = releaseTimes[i] - pressedTime;
-          if (duration == longestDuration) {
-              if (ans < keys[i]) ans = keys[i];
-          } else if (duration > longestDuration) {
-              ans  = keys[i];
-              longestDuration = duration;
-          }
-      }
-      return ans;
+//         Map<Character,Integer> map = new HashMap<>();
+//         map.put(keysPressed.charAt(0), releaseTimes[0]);
+//         int dur = 0;
+//         int max = 0;
+        
+//         for (int i = 1; i < keysPressed.length(); i++) {
+//             dur = releaseTimes[i] - releaseTimes[i-1];
+//             max = Math.max(max, dur);
+//             map.put(keysPressed.charAt(i), dur);
+//         }
+        
+//         max = Math.max(max, releaseTimes[0]);
+                
+//         char key = '!';
+//         for (Map.Entry<Character,Integer> set : map.entrySet()) {
+//             key = set.getKey();
+//             if (set.getValue() == max) {
+//                 if (set.getKey() > key) {
+//                     key = set.getKey();
+//                 }
+//             }
+//         }
+        
+        
+//         System.out.println(map);
+//         System.out.println(max);
+//         return key;
+        HashMap<Character, Integer> durationMap = new HashMap<>();
+        durationMap.put(keysPressed.charAt(0), releaseTimes[0]);
+        // find and store the keypress duration for each key in the durationMap
+        for (int i = 1; i < releaseTimes.length; i++) {
+            int currentDuration = releaseTimes[i] - releaseTimes[i - 1];
+            char currentKey = keysPressed.charAt(i);
+            durationMap.put(currentKey,
+                Math.max(durationMap.getOrDefault(currentKey, 0), currentDuration));
+        }
+        char slowestKey = ' ';
+        int longestPressDuration = 0;
+        // iterate over the map to find the slowest key
+        for (Map.Entry mapElement : durationMap.entrySet()) {
+            int duration = (int) mapElement.getValue();
+            char key = (char) mapElement.getKey();
+            if (duration > longestPressDuration) {
+                longestPressDuration = duration;
+                slowestKey = key;
+            } else if (duration == longestPressDuration && key > slowestKey) {
+                slowestKey = key;
+            }
+        }
+        return slowestKey;
+        
     }
 }
