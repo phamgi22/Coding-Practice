@@ -10,7 +10,9 @@ class Solution {
             else if (c == ']' && !stack.isEmpty() && stack.peek() == '[') stack.pop();
             else if (c == '}' && !stack.isEmpty() && stack.peek() == '{') stack.pop();
             else return false;
-            // System.out.println(stack);
+            
+            
+            
         }
         
         return stack.isEmpty();
