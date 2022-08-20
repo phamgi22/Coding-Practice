@@ -15,31 +15,38 @@
  */
 class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
-        List<List<Integer>> result = new ArrayList<>();
-        if (root == null) return result;
+        // bfs: top to bottom, left to righ ==> return level by level of the tree
+        // constraints: number of root in the tree can be 0
+       
+        // instantiate a list of nodes in each level to return later
+        List<List<Integer>> levels = new ArrayList<>();
         
+        // number of node can be 0, checking if there is no root
+        if (root == null) return levels;
+        
+        // there will definitely node to processs
+        // plan: adding each node of each level to the queue, if that node has children => add children to queue
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
         while(!queue.isEmpty()) {
             int size = queue.size();
             List<Integer> currentLevel = new ArrayList<>();
             for (int i = 0; i < size; i++) {
-                TreeNode current = queue.remove();
-                currentLevel.add(current.val);
+                TreeNode node = queue.remove();
+                currentLevel.add(node.val);
                 
-                if (current.left != null) {
-                    queue.add(current.left);
+                if (node.left != null) {
+                    queue.offer(node.left);
                 }
                 
-                if (current.right != null) {
-                    queue.add(current.right);
+                if (node.right != null) {
+                    queue.offer(node.right);
                 }
             }
             
-            result.add(currentLevel);
+            levels.add(currentLevel);
         }
         
-        return result;
-        
+        return levels;
     }
 }
