@@ -1,33 +1,19 @@
 class Solution {
+
     public List<List<String>> groupAnagrams(String[] strs) {
-        /*
-        Give:
-        - an array of strings
-        - group the anagrams together
-        - can return answer in any order
-        - anagrams = words that use the exact characters as each other but in different order
-        
-        
-        Algo1:
-        - create a return value of list of list of strings
-        - create a map that store and map the string values when sorted is the same as the sorted value
-        
-        */
-        
-        List<List<String>> groups = new ArrayList<>();
-        Map<String,List<String>> map = new HashMap<>();
-        
-        for (String string : strs) {
-            char[] chars = string.toCharArray();
-            Arrays.sort(chars);
-            String sortedString = new String(chars);
-            
-            if (!map.containsKey(sortedString)) map.put(sortedString, new ArrayList<>());
-            map.get(sortedString).add(string);
+        List<List<String>> res = new ArrayList<>();
+        if (strs.length == 0) return res;
+        HashMap<String, List<String>> map = new HashMap<>();
+        for (String s : strs) {
+            char[] hash = new char[26];
+            for (char c : s.toCharArray()) {
+                hash[c - 'a']++;
+            }
+            String key = new String(hash);
+            map.computeIfAbsent(key, k -> new ArrayList<>());
+            map.get(key).add(s);
         }
-        
-        groups.addAll(map.values());
-        return groups;
-            
+        res.addAll(map.values());
+        return res;
     }
 }
