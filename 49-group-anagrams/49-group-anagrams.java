@@ -21,8 +21,6 @@ class Solution {
 
         }
         
-        List<List<String>> output = new ArrayList<>();
-        output.addAll(map.values());
-        return output;
+        return new ArrayList<>(map.values());
     }
 }
