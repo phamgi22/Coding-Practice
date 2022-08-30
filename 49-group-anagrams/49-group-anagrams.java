@@ -16,12 +16,9 @@ class Solution {
             char[] current = string.toCharArray();
             Arrays.sort(current);
             String sorted = new String(current);
-            if (!map.containsKey(sorted)) {
-                map.put(sorted, new ArrayList<>());
-                map.get(sorted).add(string);
-            } else {
-                map.get(sorted).add(string);
-            }
+            if (!map.containsKey(sorted))map.put(sorted, new ArrayList<>());
+            map.get(sorted).add(string);
+
         }
         
         List<List<String>> output = new ArrayList<>();
