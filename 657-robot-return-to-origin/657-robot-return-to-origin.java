@@ -1,7 +1,5 @@
 class Solution {
-    public boolean judgeCircle(String moves) {
-        char[] movesChar = moves.toCharArray();
-        
+    public boolean judgeCircle(String moves) {      
         int u = 0;
         int d = 0;
         int l = 0;
