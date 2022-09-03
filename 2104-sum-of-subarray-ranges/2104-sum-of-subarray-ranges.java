@@ -1,28 +1,21 @@
 class Solution {
-        public long subArrayRanges(int[] nums) {
-
-        long max = Integer.MIN_VALUE;
-        long min = Integer.MAX_VALUE;
-        long result = 0;
+    public long subArrayRanges(int[] nums) {
+        long sum = 0; // initiate a sum
+        int size = nums.length;
         
-        //the last value of the array will just be zero anyway
-        for(int i = 0; i < nums.length -1; i++) {
-           int startVal = nums[i]; 
-            for(int k = i; k < nums.length; k++) {
-                int curr = nums[k];
-                if(curr > max) {
-                    max = curr;
-                }
-                if(curr < min) {
-                    min = curr;
-                }
-                result = result + (max - min);
-                
+        // for every single num in nums array
+        for (int i = 0; i < size; i++) {
+            int min = nums[i];
+            int max = nums[i];
+            
+            // for every single number from i and after
+            for (int j = i; j < size; j++) {
+                min = Math.min(min, nums[j]);
+                max = Math.max(max, nums[j]);
+                sum += max - min;
             }
-            //reset max and mins
-            max = nums[i+1];
-            min = nums[i+1];  
         }
-        return result;
+        
+        return sum;
     }
 }
