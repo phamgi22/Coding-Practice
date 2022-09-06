@@ -11,15 +11,17 @@ class Solution {
         // looping through the string
         // [1][][][][][][][][][][][][][][][][][][][][][][][][][][]
         for (int end = 0; end < n; end++) {
-            char_count[s.charAt(end) - 'A']++;
+            char_count[s.charAt(end) - 'A']++; // incrementing count of unique character in char array
             int current_char_count = char_count[s.charAt(end) - 'A'];
             max_count = Math.max(max_count, current_char_count);
             
-            while (end - start - max_count + 1 > k) {
+            if (end - start - max_count + 1 > k) {
                 char_count[s.charAt(start) - 'A']--;
                 start++;
             }
             
+            
+            //                                size of the window
             max_length = Math.max(max_length, end - start + 1);
         }
         
