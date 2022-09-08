@@ -21,11 +21,14 @@ class Solution {
             }
         }
         
+        System.out.println("dirX: " + dirX);
+        System.out.println("dirY: " + dirY);
+        
         // robot return to origin mean it wont go outside of the plane
         if (x == 0 && y == 0) return true; 
         
         // robot does not face north mean it change direction mean it will eventually go back to origin
-        if (dirX != 0 || dirY != 1) return true;
+        if (dirY != 1) return true;
         
         return false;
     }
