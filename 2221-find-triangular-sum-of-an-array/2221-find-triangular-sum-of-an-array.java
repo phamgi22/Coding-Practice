@@ -3,14 +3,14 @@ class Solution {
         return execute(nums, nums.length);
     }
     
-    public int execute(int[] nums, int length) {
-        if (length == 1) return nums[0];
+    public int execute(int[] arr, int length) {
+        if (length == 1) return arr[0];
         
-        for (int i = 0; i < nums.length - 1; i++) {
-            nums[i] = (nums[i] + nums[i+1]) % 10;
+        for (int i = 0; i < arr.length - 1; i++) {
+            arr[i] = (arr[i] + arr[i+1]) % 10;
         }
         
-        return execute(nums, length - 1);
+        return execute(arr, length - 1);
     }
 }
 
