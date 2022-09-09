@@ -7,10 +7,11 @@ class Solution {
         
         
         pq.add(intervals[0][1]);
+        
         for (int i = 1; i < intervals.length; i++) {
-            if (intervals[i][0] < pq.peek()) {
-                pq.add(intervals[i][1]);
-            } else if (intervals[i][0] >= pq.peek()) {
+            System.out.println(pq);
+            if (intervals[i][0] < pq.peek()) pq.add(intervals[i][1]);
+            else if (intervals[i][0] >= pq.peek()) {
                 pq.poll();
                 pq.add(intervals[i][1]);
             }
