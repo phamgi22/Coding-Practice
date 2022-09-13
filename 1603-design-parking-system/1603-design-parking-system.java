@@ -1,6 +1,6 @@
 class ParkingSystem {
-    int[] parked = new int[3];
     int[] spaces = new int[3];
+    int[] parked = new int[3];
     public ParkingSystem(int big, int medium, int small) {
         spaces[0] = big;
         spaces[1] = medium;
@@ -9,7 +9,7 @@ class ParkingSystem {
     
     public boolean addCar(int carType) {
         switch (carType) {
-            case 1:
+            case 1: 
                 parked[0]++;
                 if (parked[0] > spaces[0]) return false;
                 break;
@@ -20,6 +20,7 @@ class ParkingSystem {
             case 3:
                 parked[2]++;
                 if (parked[2] > spaces[2]) return false;
+                break;
         }
         
         return true;
