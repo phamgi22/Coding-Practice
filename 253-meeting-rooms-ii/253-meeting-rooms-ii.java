@@ -3,30 +3,30 @@ class Solution {
         if (intervals.length == 0) return 0;
         
         int[] start = new int[intervals.length];
-        int[] end = new int[intervals.length];
+        int[] end   = new int[intervals.length];
         
         for (int i = 0; i < intervals.length; i++) {
             start[i] = intervals[i][0];
-            end[i] = intervals[i][1];
+            end[i]   = intervals[i][1];
         }
         
         Arrays.sort(start);
         Arrays.sort(end);
         
-        int startP = 0;
-        int endP = 0;
-        int usedRooms = 0;
+        int start_pointer = 0;
+        int end_pointer = 0;
+        int room = 0;
         
-        while (startP < intervals.length) {
-            if (start[startP] >= end[endP]) {
-                usedRooms--;
-                endP++;
+        while (start_pointer < intervals.length) {
+            if (start[start_pointer] >= end[end_pointer]) {
+                room--;
+                end_pointer++;
             }
             
-            usedRooms++;
-            startP++;
+            room++;
+            start_pointer++;
         }
         
-        return usedRooms;
+        return room;        
     }
 }
