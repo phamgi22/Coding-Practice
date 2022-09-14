@@ -1,79 +1,32 @@
 class Solution {
     public int minMeetingRooms(int[][] intervals) {
-        Arrays.sort(intervals, (a,b) -> a[0] - b[0]);
+        if (intervals.length == 0) return 0;
         
-        // System.out.println(Arrays.deepToString(intervals));
-        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        int[] start = new int[intervals.length];
+        int[] end = new int[intervals.length];
         
-        
-        pq.add(intervals[0][1]);
-        
-        for (int i = 1; i < intervals.length; i++) {
-            System.out.println(pq);
-            if (intervals[i][0] < pq.peek()) pq.add(intervals[i][1]);
-            else if (intervals[i][0] >= pq.peek()) {
-                pq.poll();
-                pq.add(intervals[i][1]);
-            }
+        for (int i = 0; i < intervals.length; i++) {
+            start[i] = intervals[i][0];
+            end[i] = intervals[i][1];
         }
-        return pq.size();
         
+        Arrays.sort(start);
+        Arrays.sort(end);
         
+        int startP = 0;
+        int endP = 0;
+        int usedRooms = 0;
         
+        while (startP < intervals.length) {
+            if (start[startP] >= end[endP]) {
+                usedRooms--;
+                endP++;
+            }
+            
+            usedRooms++;
+            startP++;
+        }
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-//         Arrays.sort(intervals, (a,b) -> a[0] - b[0]);
-        
-//         PriorityQueue<Integer> pq = new PriorityQueue<>();
-        
-//         pq.add(intervals[0][1]);
-        
-//         for (int i = 1; i < intervals.length; i++) {
-//             if (intervals[i][0] < pq.peek()) {
-//                 pq.add(intervals[i][1]);
-//             } else {
-//                 pq.poll();
-//                 pq.add(intervals[i][1]);
-//             }
-//         }
-        
-//         return pq.size();
+        return usedRooms;
     }
 }
