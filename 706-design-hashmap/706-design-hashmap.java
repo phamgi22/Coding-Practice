@@ -2,19 +2,19 @@ class MyHashMap {
     int[] map;
     public MyHashMap() {
         this.map = new int[1000001];
-        for (int i = 0; i < map.length; i++) map[i] = -1;
+        // for (int i = 0; i < map.length; i++) map[i] = -1;
     }
     
     public void put(int key, int value) {
-        this.map[key] = value;
+        this.map[key] = value + 1;
     }
     
     public int get(int key) {
-        return this.map[key];
+        return this.map[key] - 1;
     }
     
     public void remove(int key) {
-        this.map[key] = -1;
+        this.map[key] = 0;
     }
 }
 
