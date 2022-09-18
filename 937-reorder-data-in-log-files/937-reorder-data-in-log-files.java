@@ -1,30 +1,34 @@
 class Solution {
     public String[] reorderLogFiles(String[] logs) {
         Arrays.sort(logs, (log1, log2) -> {
-            String[] arr1 = splitStr(log1);
-            String[] arr2 = splitStr(log2);
+            // log1 < log2 return neg
+            // log1 = log2 return 0
+            // log1 > log2 return pos
+            int index1 = log1.indexOf(" ");
+            String id1 = log1.substring(0, index1);
+            String main1 = log1.substring(index1 + 1);
             
-            boolean isNum1 = isNumber(arr1[1].charAt(0));
-            boolean isNum2 = isNumber(arr2[1].charAt(0));
+            int index2 = log2.indexOf(" ");
+            String id2 = log2.substring(0, index2);
+            String main2 = log2.substring(index2 + 1);
             
-            if (isNum1 && isNum2) return 0;
-            else if(isNum1) return 1;
-            else if(isNum2) return -1;
+            boolean isDigit1 = Character.isDigit(main1.charAt(0));
+            boolean isDigit2 = Character.isDigit(main2.charAt(0));
             
-            boolean isSameContent = arr1[1].equals(arr2[1]);
-            if (isSameContent) return arr1[0].compareTo(arr2[0]);
+            if (!isDigit1 && !isDigit2) {
+                int value = main1.compareTo(main2); // compare the main component lexicographically
+                
+                if (value == 0) {
+                    return id1.compareTo(id2);
+                }
+                
+                return value;
+            }
             
-            return arr1[1].compareTo(arr2[1]);
+            return isDigit1 ? (isDigit2 ? 0 : 1) : -1;
         });
         
+        
         return logs;
-    }
-    
-    private String[] splitStr(String log) {
-        return log.split(" ", 2);
-    }
-    
-    private boolean isNumber(char curChar) {
-        return '0' <= curChar && curChar <= '9';
     }
 }
