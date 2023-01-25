@@ -1,20 +1,19 @@
 class Solution {
     public boolean isValidSudoku(char[][] board) {
-        Set<String> unique = new HashSet<>();
+        Set<String> uni = new HashSet<>();
+        int side = board.length;
         
-        for (int r = 0; r < board.length; r++) {
-            for (int c = 0; c < board[0].length; c++) {
+        for (int r = 0; r < side; r++) {
+            for (int c = 0; c < side; c++) {
                 char current = board[r][c];
-                if (board[r][c] != '.') {
-                    if (!unique.add(current + " found at row " + r)) return false;
-                    if (!unique.add(current + " found at col " + c)) return false;
-                    if (!unique.add(current + " found at box " + r/(board.length/3) + c/(board.length/3))) return false;
-                    
+                if (current != '.') {
+                    if (!uni.add(current + " found at row " + r) ||
+                        (!uni.add(current + " found at col " + c)) ||
+                        (!uni.add(current + " found at box " + r/3 + c/3))) return false;
                 }
             }
         }
         
         return true;
-        
     }
 }
