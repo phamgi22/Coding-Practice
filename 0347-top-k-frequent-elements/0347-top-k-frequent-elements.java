@@ -12,7 +12,6 @@ class Solution {
             pq.add(entry);
         }
         
-        
         int[] output = new int[k];
         for (int i = 0; i < k; i++) {
             output[i] = pq.poll().getKey();
