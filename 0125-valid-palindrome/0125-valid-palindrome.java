@@ -10,16 +10,16 @@ class Solution {
                 i++;
                 continue;
             }
+            
             if (!Character.isLetterOrDigit(end)) {
                 j--;
                 continue;
             }
+            
             if (Character.toLowerCase(start) != Character.toLowerCase(end)) return false;
             i++;
             j--;
-
         }
-        
         return true;
     }
 }
