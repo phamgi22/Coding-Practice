@@ -4,9 +4,7 @@ public class Codec {
     public String encode(List<String> strs) {
         StringBuilder sb = new StringBuilder();
         for (String s : strs) {
-            sb.append(s.length())
-                .append('#')
-                .append(s);
+            sb.append(s.length()).append('#').append(s);
         }
         
         return sb.toString();
@@ -19,14 +17,14 @@ public class Codec {
         
         while (i < s.length()) {
             int j = i;
-            while(s.charAt(j) != '#') {
+            while (s.charAt(j) != '#') {
                 j++;
             }
+            
             int length = Integer.valueOf(s.substring(i,j));
             i = j + 1 + length;
-            list.add(s.substring(j+1,i));
+            list.add(s.substring(j + 1,i));
         }
-        
         return list;
     }
 }
