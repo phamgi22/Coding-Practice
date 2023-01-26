@@ -6,8 +6,8 @@ class Solution {
         while (l < r) {
             int sum = numbers[l] + numbers[r];
             
-            if (sum > target) r--;
-            else if (sum < target) l++;
+            if (sum < target) l++;
+            else if (sum > target) r--;
             else return new int[]{l+1, r+1};
         }
         
