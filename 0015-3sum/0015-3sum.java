@@ -5,9 +5,19 @@ class Solution {
         Arrays.sort(nums);
         LinkedList<List<Integer>> sol = new LinkedList<List<Integer>>();
 
-        for (int i = 0; i < nums.length - 2; i++) {
+        
+//         -1 0 1 2 -1 4
+//         -1 -1  0 1 2 4
+//          0  1  2 3 4 5   
+//          i  l        r
+        // for i start from 0, end at i = 3
+        // i == 0, this is the beginning element
+        // i > 0, this is not the beginning element but this element is not the same as the previous element (greater then due to sorted array)
+        for (int i = 0; i < nums.length - 1; i++) {
             if (i == 0 || (i > 0 && nums[i] != nums[i - 1])) {
+                // calculate the sum of the remaining two element of the triplet
                 int target = 0 - nums[i];
+                // 
                 int left = i + 1;
                 int right = nums.length - 1;
 
