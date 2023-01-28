@@ -9,8 +9,7 @@ class Solution {
             area = Math.max(cur,area);
             
             if (height[l] < height[r]) l++;
-            else if (height[l] > height[r]) r--;
-            else l++;
+            else r--;
         }
         
         return area;
