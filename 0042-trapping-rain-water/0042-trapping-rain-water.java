@@ -19,8 +19,8 @@ class Solution {
         
         right[height.length - 1] = 0;
         max = height[height.length - 1];
-        for (int i = height.length - 1; i >= 0; i--) {
-            right[i] = Math.max(height[i], max);
+        for (int i = height.length - 2; i >= 0; i--) {
+            right[i] = Math.max(height[i + 1], max);
             max = right[i];
         }
         
