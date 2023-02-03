@@ -15,7 +15,6 @@ class Solution {
             max = left[i];
         }
         
-        System.out.println(Arrays.toString(left));
         
         right[height.length - 1] = 0;
         max = height[height.length - 1];
@@ -24,11 +23,10 @@ class Solution {
             max = right[i];
         }
         
-        System.out.println(Arrays.toString(right));
         
         for (int i = 0; i < height.length; i++) {
             if (Math.min(left[i], right[i]) - height[i] > 0) {
-             count = count + Math.min(left[i], right[i]) - height[i];
+             count += Math.min(left[i], right[i]) - height[i];
 
             }
         }
