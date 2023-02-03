@@ -27,7 +27,7 @@ class Solution {
         for (int i = 0; i < height.length; i++) {
             if (Math.min(left[i], right[i]) - height[i] > 0) {
              count += Math.min(left[i], right[i]) - height[i];
-            System.out.println(count);
+            // System.out.println(count);
 
             }
         }
