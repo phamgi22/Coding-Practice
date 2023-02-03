@@ -1,22 +1,28 @@
 class Solution {
-    public int trap(int[] heights) {
-        int left[] = new int[heights.length], right[] = new int[heights.length], max =
-            heights[0], c = 0;
-
-        for (int i = 0; i < heights.length; i++) {
-            left[i] = Math.max(heights[i], max);
+    public int trap(int[] height) {
+        int left[] = new int[height.length];
+        int right[] = new int[height.length];
+        int max = height[0];
+        int count = 0;
+        
+        for (int i = 0; i < height.length; i++) {
+            left[i] = Math.max(height[i], max);
             max = left[i];
         }
-
-        max = heights[heights.length - 1];
-        for (int i = heights.length - 1; i >= 0; i--) {
-            right[i] = Math.max(heights[i], max);
+        
+        max = height[height.length - 1];
+        for (int i = height.length - 1; i >= 0; i--) {
+            right[i] = Math.max(height[i], max);
             max = right[i];
         }
+        
+        for (int i = 0; i < height.length; i++) {
+            if (Math.min(left[i], right[i]) - height[i] > 0) {
+             count = count + Math.min(left[i], right[i]) - height[i];
 
-        for (int i = 0; i < heights.length; i++) {
-            c = c + Math.min(left[i], right[i]) - heights[i];
+            }
         }
-        return c;
+        
+        return count;
     }
 }
