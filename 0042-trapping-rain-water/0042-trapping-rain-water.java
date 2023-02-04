@@ -9,12 +9,12 @@ class Solution {
         while (left < right) {
             if (leftMax < rightMax) {
                 left++;
-                leftMax = Math.max(leftMax,height[left]);
+                leftMax = Math.max(leftMax, height[left]);
                 count += leftMax - height[left];
             } else {
                 right--;
-                rightMax = Math.max(rightMax,height[right]);
-                count  += rightMax - height[right];
+                rightMax = Math.max(rightMax, height[right]);
+                count += rightMax - height[right];
             }
         }
         
