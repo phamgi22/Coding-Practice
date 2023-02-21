@@ -23,19 +23,17 @@ class Solution {
         
         while (!queue.isEmpty()) {
             int size = queue.size();
-            List<Integer> currLevel = new ArrayList<>();
-            
+            List<Integer> curLevel = new ArrayList<>();
             for (int i = 0; i < size; i++) {
-                TreeNode curr = queue.remove();
-                currLevel.add(curr.val);
-                if (curr.left != null) queue.add(curr.left);
-                if (curr.right != null) queue.add(curr.right);
+                TreeNode cur = queue.remove();
+                curLevel.add(cur.val);
+                if (cur.left != null)  queue.add(cur.left);
+                if (cur.right != null) queue.add(cur.right);
             }
             
-            list.add(currLevel);
+            list.add(curLevel);
         }
         
-    
         return list;
     }
 }
