@@ -18,9 +18,9 @@ class Solution {
         return validate(root, null, null);
     }
     
-    private boolean validate(TreeNode root, Integer max, Integer min) {
+    private boolean validate(TreeNode root, Integer min, Integer max) {
         if (root == null) return true;
-        else if (max != null && root.val >= max || min != null && root.val <= min) return false;
-        else return validate(root.left, root.val, min) && validate(root.right, max, root.val);
+        else if (max != null && root.val >= max || min != null && min >= root.val) return false;
+        else return validate(root.left, min, root.val) && validate(root.right, root.val, max);
     }
 }
