@@ -15,7 +15,7 @@
  */
 class Solution {
     public int goodNodes(TreeNode root) {
-        return count(root, root.val);  
+        return count(root, root.val);
     }
     
     private int count(TreeNode node, int max) {
@@ -25,6 +25,7 @@ class Solution {
                 max = node.val;
                 count++;
             }
+            
             count += count(node.left, max);
             count += count(node.right, max);
         }
