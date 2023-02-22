@@ -19,19 +19,14 @@ class Solution {
         if (root == null) return list;
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
-        while (!queue.isEmpty()) {
+        while(!queue.isEmpty()) {
             int size = queue.size();
             for (int i = 0; i < size; i++) {
-                TreeNode cur = queue.remove();
-                if (i == size - 1) {
-                    list.add(cur.val);
-                }
-                
-                if (cur.left != null) queue.add(cur.left);
-                if (cur.right!= null) queue.add(cur.right);
+                TreeNode curr = queue.remove();
+                if (i == size - 1) list.add(curr.val);
+                if (curr.left != null) queue.add(curr.left);
+                if (curr.right != null) queue.add(curr.right);
             }
-            
-            
         }
         
         return list;
