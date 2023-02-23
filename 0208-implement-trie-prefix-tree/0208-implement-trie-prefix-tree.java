@@ -1,38 +1,38 @@
 class Trie {
-
     private Node root;
+
     public Trie() {
-        // \0 is an empty character
         root = new Node('\0');
     }
     
     public void insert(String word) {
+        // curr will always start at the top of the tree
         Node curr = root;
-        for (int i = 0 ; i < word.length(); i++) {
+        for (int i = 0; i < word.length(); i++) {
             char c = word.charAt(i);
-            if (curr.children[c - 'a'] == null) curr.children[c - 'a'] = new Node(c);
-            curr = curr.children[c - 'a'];
+            if (curr.child[c - 'a'] == null) curr.child[c - 'a'] = new Node(c);
+            curr = curr.child[c - 'a'];
         }
         
         curr.isWord = true;
     }
     
     public boolean search(String word) {
-        Node node = getNode(word);
-        return node != null && node.isWord == true;
+        return get(word) != null && get(word).isWord == true;
     }
     
     public boolean startsWith(String prefix) {
-        return getNode(prefix) != null;
+        return get(prefix) != null;
     }
     
-    // return the last node of the word we are looking for
-    private Node getNode(String word) {
+    
+    // return the last node of the word we are looking at
+    private Node get(String word) {
         Node curr = root;
         for (int i = 0; i < word.length(); i++) {
             char c = word.charAt(i);
-            if (curr.children[c - 'a'] == null) return null;
-            curr = curr.children[c - 'a'];
+            if (curr.child[c - 'a'] == null) return null;
+            curr = curr.child[c - 'a'];
         }
         
         return curr;
@@ -41,11 +41,11 @@ class Trie {
     class Node {
         public char c;
         public boolean isWord;
-        public Node[] children;
+        public Node[] child;
         public Node(char c) {
             this.c = c;
             isWord = false;
-            children = new Node[26];
+            child = new Node[26];
         }
     }
 }
