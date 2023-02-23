@@ -1,17 +1,15 @@
 class Trie {
     private Node root;
-
     public Trie() {
         root = new Node('\0');
     }
     
     public void insert(String word) {
-        // curr will always start at the top of the tree
         Node curr = root;
         for (int i = 0; i < word.length(); i++) {
             char c = word.charAt(i);
-            if (curr.child[c - 'a'] == null) curr.child[c - 'a'] = new Node(c);
-            curr = curr.child[c - 'a'];
+            if (curr.chi[c - 'a']  == null) curr.chi[c - 'a'] = new Node(c);
+            curr = curr.chi[c - 'a'];
         }
         
         curr.isWord = true;
@@ -25,28 +23,26 @@ class Trie {
         return get(prefix) != null;
     }
     
-    
-    // return the last node of the word we are looking at
     private Node get(String word) {
         Node curr = root;
         for (int i = 0; i < word.length(); i++) {
             char c = word.charAt(i);
-            if (curr.child[c - 'a'] == null) return null;
-            curr = curr.child[c - 'a'];
+            if (curr.chi[c - 'a'] == null) return null;
+            curr = curr.chi[c - 'a'];
         }
         
         return curr;
     }
     
-    class Node {
+    public class Node {
         public char c;
         public boolean isWord;
-        public Node[] child;
+        public Node[] chi;
         public Node(char c) {
             this.c = c;
             isWord = false;
-            child = new Node[26];
-        }
+            chi = new Node[26];
+        } 
     }
 }
 
