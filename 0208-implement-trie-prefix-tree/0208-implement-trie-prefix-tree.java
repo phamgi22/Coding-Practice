@@ -1,15 +1,15 @@
 class Trie {
     private Node root;
     public Trie() {
-        root = new Node('\0');
+        root = new Node('*');
     }
     
     public void insert(String word) {
         Node curr = root;
         for (int i = 0; i < word.length(); i++) {
             char c = word.charAt(i);
-            if (curr.chi[c - 'a']  == null) curr.chi[c - 'a'] = new Node(c);
-            curr = curr.chi[c - 'a'];
+            if(curr.child[c - 'a'] == null) curr.child[c - 'a'] = new Node(c);
+            curr = curr.child[c - 'a'];
         }
         
         curr.isWord = true;
@@ -27,21 +27,21 @@ class Trie {
         Node curr = root;
         for (int i = 0; i < word.length(); i++) {
             char c = word.charAt(i);
-            if (curr.chi[c - 'a'] == null) return null;
-            curr = curr.chi[c - 'a'];
+            if (curr.child[c - 'a'] == null) return null;
+            curr = curr.child[c - 'a'];
         }
         
         return curr;
     }
     
     public class Node {
-        public char c;
-        public boolean isWord;
-        public Node[] chi;
+        private char c;
+        private boolean isWord;
+        private Node[] child;
         public Node(char c) {
             this.c = c;
             isWord = false;
-            chi = new Node[26];
+            child = new Node[26];
         } 
     }
 }
