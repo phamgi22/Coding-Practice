@@ -1,7 +1,6 @@
 class KthLargest {
     PriorityQueue<Integer> heap = new PriorityQueue<>();
     int k;
-    
     public KthLargest(int k, int[] nums) {
         this.k = k;
         for (int n : nums) add(n);
@@ -11,7 +10,7 @@ class KthLargest {
         if (heap.size() < k) heap.offer(val);
         else if (val > heap.peek()) {
             heap.poll();
-            heap.add(val);
+            heap.offer(val);
         }
         
         return heap.peek();
