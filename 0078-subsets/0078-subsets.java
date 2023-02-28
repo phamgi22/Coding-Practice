@@ -1,23 +1,20 @@
 class Solution {
     public List<List<Integer>> subsets(int[] nums) {
-        List<List<Integer>> ans = new ArrayList<>();
-        List<Integer> list = new ArrayList<>();
-        helper(ans, 0, nums, list);
-        return ans;
+        List<List<Integer>> subsets = new ArrayList<>();
+        
+        // generateSubsets(index, nums input,current subset)
+        generateSubsets(0, nums, new ArrayList<Integer>(), subsets);
+        return subsets;
+        
     }
     
-    public void helper(
-        List<List<Integer>> ans,
-        int start,
-        int[] nums,
-        List<Integer> list
-    ) {
-        if (start >= nums.length) ans.add(new ArrayList<>(list));
-        else {
-            list.add(nums[start]);
-            helper(ans, start + 1, nums, list);
-            list.remove(list.size() -  1);
-            helper(ans, start + 1, nums, list);
+    public void generateSubsets(int index, int[] nums, List<Integer> current, List<List<Integer>> subsets) {
+        
+        subsets.add(new ArrayList<>(current));
+        for (int i = index; i < nums.length; i++) {
+            current.add(nums[i]);
+            generateSubsets(i + 1, nums, current, subsets);
+            current.remove(current.size() - 1);
         }
     }
 }
