@@ -5,7 +5,7 @@ class Solution {
             int current = n;
             int sum = 0;
             while(current != 0) {
-                sum += (current % 10) * (current % 10);
+                sum += Math.pow(current % 10, 2);
                 current /= 10;
             }
             
