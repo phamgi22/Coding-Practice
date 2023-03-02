@@ -20,7 +20,6 @@ class Solution {
         
         area++;
         grid[i][j] = 0;
-        
         bfs(grid, i, j + 1);
         bfs(grid, i, j - 1);
         bfs(grid, i + 1, j);
