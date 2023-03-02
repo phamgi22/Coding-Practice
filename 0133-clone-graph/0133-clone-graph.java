@@ -18,20 +18,30 @@ class Node {
 }
 */
 
+/*
+Undirected graph: each node is connected both way
+Node 1, [2 3]
+Node 2, [1 4]
+Node 3, [1 4]
+Node 4, [2 3]
+
+As we travel thru each node we make copy
+*/
+
 class Solution {
     public Node cloneGraph(Node node) {
         if (node == null) return null;
-        
         Map<Integer, Node> map = new HashMap<>();
-        // a recursive function that clone each node as we 
-        return cloneGraph(node, map);
+        return clone(node, map);
     }
     
-    private Node cloneGraph(Node node, Map<Integer, Node> map) {
+    private Node clone(Node node, Map<Integer, Node> map) {
         if (map.containsKey(node.val)) return map.get(node.val);
         Node copy = new Node(node.val);
         map.put(node.val, copy);
-        for (Node neighbor : node.neighbors) copy.neighbors.add(cloneGraph(neighbor, map));
+        for (Node nei : node.neighbors) {
+            copy.neighbors.add(clone(nei, map));
+        }
         
         return copy;
     }
