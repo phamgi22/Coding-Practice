@@ -52,21 +52,36 @@ class Solution {
             for (int[] dir : DIRECTIONS) { // Check all 4 directions
                 int newRow = cell[0] + dir[0];
                 int newCol = cell[1] + dir[1];
-                // Check if new cell is within bounds
-                if (newRow < 0 || newRow >= numRows || newCol < 0 || newCol >= numCols) {
-                    continue;
-                }
-                // Check that the new cell hasn't already been visited
-                if (reachable[newRow][newCol]) {
-                    continue;
-                }
-                // Check that the new cell has a higher or equal height,
-                // So that water can flow from the new cell to the old cell
-                if (landHeights[newRow][newCol] < landHeights[cell[0]][cell[1]]) {
-                    continue;
-                }
-                // If we've gotten this far, that means the new cell is reachable
-                queue.offer(new int[]{newRow, newCol});
+                
+                
+                
+                
+                // if (newRow < 0 || newRow >= numRows || newCol < 0 || newCol >= numCols) {
+                //     continue;
+                // }
+                // if (reachable[newRow][newCol]) {
+                //     continue;
+                // }
+                // if (landHeights[newRow][newCol] < landHeights[cell[0]][cell[1]]) {
+                //     continue;
+                // }
+                // queue.offer(new int[]{newRow, newCol});
+                
+                
+                if (newRow >= 0
+                   && newRow <= numRows - 1
+                   && newCol >= 0
+                   && newCol <= numCols - 1
+                   && !reachable[newRow][newCol]
+                   && landHeights[newRow][newCol] >= landHeights[cell[0]][cell[1]]) queue.offer(new int[] {newRow, newCol});
+                
+                
+                
+                
+                
+                
+                
+                
             }
         }
         return reachable;
