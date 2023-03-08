@@ -29,11 +29,10 @@ public void wallsAndGates(int[][] rooms) {
         for (int[] direction : DIRECTIONS) {
             int r = row + direction[0];
             int c = col + direction[1];
-            if (r < 0 || c < 0 || r >= m || c >= n || rooms[r][c] != EMPTY) {
-                continue;
-            }
+            if (r >= 0 && c >= 0 && r <= m - 1 && c <= n - 1 && rooms[r][c] == EMPTY) { 
             rooms[r][c] = rooms[row][col] + 1;
             q.add(new int[] { r, c });
+            }
         }
     }
 }}
