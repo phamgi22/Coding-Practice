@@ -52,36 +52,12 @@ class Solution {
             for (int[] dir : DIRECTIONS) { // Check all 4 directions
                 int newRow = cell[0] + dir[0];
                 int newCol = cell[1] + dir[1];
-                
-                
-                
-                
-                // if (newRow < 0 || newRow >= numRows || newCol < 0 || newCol >= numCols) {
-                //     continue;
-                // }
-                // if (reachable[newRow][newCol]) {
-                //     continue;
-                // }
-                // if (landHeights[newRow][newCol] < landHeights[cell[0]][cell[1]]) {
-                //     continue;
-                // }
-                // queue.offer(new int[]{newRow, newCol});
-                
-                
                 if (newRow >= 0
                    && newRow <= numRows - 1
                    && newCol >= 0
                    && newCol <= numCols - 1
                    && !reachable[newRow][newCol]
-                   && landHeights[newRow][newCol] >= landHeights[cell[0]][cell[1]]) queue.offer(new int[] {newRow, newCol});
-                
-                
-                
-                
-                
-                
-                
-                
+                   && landHeights[newRow][newCol] >= landHeights[cell[0]][cell[1]]) queue.offer(new int[] {newRow, newCol}); 
             }
         }
         return reachable;
