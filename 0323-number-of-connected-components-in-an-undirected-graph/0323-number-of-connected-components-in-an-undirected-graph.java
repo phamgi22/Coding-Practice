@@ -1,45 +1,54 @@
-public class Solution {
+class Solution {
 
-    private int find(int[] representative, int vertex) {
-        if (vertex == representative[vertex]) {
-            return vertex;
-        }
-        
-        return representative[vertex] = find(representative, representative[vertex]);
-    }
-    
-    private int combine(int[] representative, int[] size, int vertex1, int vertex2) {
-        vertex1 = find(representative, vertex1);
-        vertex2 = find(representative, vertex2);
-        
-        if (vertex1 == vertex2) {
-            return 0;
-        } else {
-            if (size[vertex1] > size[vertex2]) {
-                size[vertex1] += size[vertex2];
-                representative[vertex2] = vertex1;
-            } else {
-                size[vertex2] += size[vertex1];
-                representative[vertex1] = vertex2;
-            }
-            return 1;
-        }
-    }
+    private int[] parent;
+    private int[] rank;
 
     public int countComponents(int n, int[][] edges) {
-        int[] representative = new int[n];
-        int[] size = new int[n];
-        
+        parent = new int[n];
+        rank = new int[n];
+
         for (int i = 0; i < n; i++) {
-            representative[i] = i;
-            size[i] = 1;
-        }
-        
-        int components = n;
-        for (int i = 0; i < edges.length; i++) { 
-            components -= combine(representative, size, edges[i][0], edges[i][1]);
+            parent[i] = i;
+            rank[i] = 1;
         }
 
-        return components;
+        int result = n;
+        for (int i = 0; i < edges.length; i++) {
+            if (union(edges[i][0], edges[i][1]) == 1) {
+                result--;
+            }
+        }
+
+        return result;
+    }
+
+    private int find(int node) {
+        int result = node;
+
+        while (parent[result] != result) {
+            parent[result] = parent[parent[result]];
+            result = parent[result];
+        }
+
+        return result;
+    }
+
+    private int union(int n1, int n2) {
+        int p1 = this.find(n1);
+        int p2 = this.find(n2);
+
+        if (p1 == p2) {
+            return 0;
+        }
+
+        if (rank[p2] > rank[p1]) {
+            parent[p1] = p2;
+            rank[p2] += rank[p1];
+        } else {
+            parent[p2] = p1;
+            rank[p1] += rank[p2];
+        }
+
+        return 1;
     }
 }
