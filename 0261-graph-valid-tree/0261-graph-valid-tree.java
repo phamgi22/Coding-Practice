@@ -1,6 +1,9 @@
 class Solution {
     public boolean validTree(int n, int[][] edges) {
-            
+        
+    if (edges.length != n - 1) return false;
+    
+    // Make the adjacency list.
     List<List<Integer>> adjacencyList = new ArrayList<>();
     for (int i = 0; i < n; i++) {
         adjacencyList.add(new ArrayList<>());
@@ -10,25 +13,20 @@ class Solution {
         adjacencyList.get(edge[1]).add(edge[0]);
     }
     
-    Map<Integer, Integer> parent = new HashMap<>();
-    parent.put(0, -1);
     Stack<Integer> stack = new Stack<>();
+    Set<Integer> seen = new HashSet<>();
     stack.push(0);
-
+    seen.add(0);
+    
     while (!stack.isEmpty()) {
         int node = stack.pop();
         for (int neighbour : adjacencyList.get(node)) {
-            if (parent.get(node) == neighbour) {
-                continue;
-            }
-            if (parent.containsKey(neighbour)) {
-                return false;
-            }
+            if (seen.contains(neighbour)) continue;
+            seen.add(neighbour);
             stack.push(neighbour);
-            parent.put(neighbour, node);
         }
     }
     
-    return parent.size() == n;   
+    return seen.size() == n;   
 }
 }
