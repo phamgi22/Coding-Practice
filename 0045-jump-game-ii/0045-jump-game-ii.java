@@ -1,5 +1,6 @@
 class Solution {
     public int jump(int[] nums) {
+        // The starting range of the first jump [0,0]
         int answer = 0;
         int n = nums.length;
         int curEnd = 0;
