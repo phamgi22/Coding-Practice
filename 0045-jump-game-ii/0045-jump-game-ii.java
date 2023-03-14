@@ -10,10 +10,7 @@ class Solution {
 
             // If we finish the starting range of this jump,
             // Move on to the starting range of the next jump.
-            if (i == curEnd) {
-                answer++;
-                curEnd = curFar;
-            }
+            if (i == curEnd) { answer++; curEnd = curFar;}
         }
         
         return answer;
