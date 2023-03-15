@@ -6,31 +6,31 @@ class Solution {
             courseDict.get(relation[0]).add(relation[1]);
         }
         
-        boolean[] checked = new boolean[numCourses];
-        boolean[] path = new boolean[numCourses];
-        for (int i = 0; i < numCourses; i++) {
-            if (this.isCyclic(i, courseDict, path, checked)) return false;
+        boolean[] cyclic_checked = new boolean[numCourses];
+        boolean[] visited = new boolean[numCourses];
+        
+        for (int course = 0; course < numCourses; course++) {
+            if (isCyclic(course, courseDict, cyclic_checked, visited)) return false;
         }
         
         return true;
     }
     
-    // backtracking method to check that no cycle would be form starting from currcourse
-    
-    private boolean isCyclic(Integer i, Map<Integer, List<Integer>> courseDict, boolean[] path, boolean[] checked) {
-        if (checked[i]) return false;
-        if (path[i]) return true;
-        if (!courseDict.containsKey(i)) return false;
+    private boolean isCyclic(Integer course, Map<Integer, List<Integer>> courseDict, boolean[] cyclic_checked, boolean[] visited) {
         
-        path[i] = true;
+        if (visited[course]) return true;
+        if (cyclic_checked[course]) return false;
+        if (!courseDict.containsKey(course)) return false;
+        
+        visited[course] = true;
         boolean ret = false;
-        for (Integer child : courseDict.get(i)) {
-            ret = isCyclic(child, courseDict, path, checked);
+        for (Integer child : courseDict.get(course)) {
+            ret = isCyclic(child, courseDict, cyclic_checked, visited);
             if (ret) break;
         }
         
-        path[i] = false;
-        checked[i] = true;
+        cyclic_checked[course] = true;
+        visited[course] = false;
         return ret;
     }
 }
