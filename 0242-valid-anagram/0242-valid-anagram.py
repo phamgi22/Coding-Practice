@@ -17,9 +17,7 @@ class Solution:
         for key in smap:
             if key not in tmap or tmap[key] != smap[key]:
                 return False
-    
-        print(smap)
-        print(tmap)
+
         
         return True
         
