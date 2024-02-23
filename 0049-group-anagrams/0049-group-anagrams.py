@@ -1,13 +1,15 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        group = {}
+        res = {}
         
         for string in strs:
-            sorted_string = sorted(string)
-            if tuple(sorted_string) not in group:
-                group[tuple(sorted_string)] = []
+            count = [0] * 26
+            for char in string:
+                count[ord(char) - ord("a")] += 1
             
-            group[tuple(sorted_string)].append(string)
-            
-            
-        return group.values()
+            if tuple(count) not in res:
+                res[tuple(count)] = []
+            res[tuple(count)].append(string)
+        
+        
+        return res.values()
