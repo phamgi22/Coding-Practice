@@ -3,6 +3,6 @@ class Solution:
         res = defaultdict(list)
         
         for string in strs:
-            sorted_string = sorted(string)
-            res[tuple(sorted_string)].append(string)
+            res[tuple(sorted(string))].append(string)
+            
         return res.values()
