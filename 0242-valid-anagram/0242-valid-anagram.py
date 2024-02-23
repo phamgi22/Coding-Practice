@@ -7,17 +7,12 @@ class Solution:
         tmap = {}
         
         for i in range(len(s)):
-            char = s[i]
-            smap[char] = smap.get(char, 0) + 1
-        
-        for i in range(len(t)):
-            char = t[i]
-            tmap[char] = tmap.get(char, 0) + 1
-        
+            smap[s[i]] = smap.get(s[i], 0) + 1
+            tmap[t[i]] = tmap.get(t[i], 0) + 1
+            
         for key in smap:
             if key not in tmap or tmap[key] != smap[key]:
                 return False
-
-        
+            
         return True
         
