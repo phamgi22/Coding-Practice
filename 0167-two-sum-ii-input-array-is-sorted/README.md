@@ -32,7 +32,7 @@
 <p><strong>Constraints:</strong></p>
 
 <ul>
-	<li><code>2 &lt;= numbers.length &lt;= 3 * 10<sup style="">4</sup></code></li>
+	<li><code>2 &lt;= numbers.length &lt;= 3 * 10<sup>4</sup></code></li>
 	<li><code>-1000 &lt;= numbers[i] &lt;= 1000</code></li>
 	<li><code>numbers</code> is sorted in <strong>non-decreasing order</strong>.</li>
 	<li><code>-1000 &lt;= target &lt;= 1000</code></li>
