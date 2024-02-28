@@ -8,7 +8,7 @@ class Solution:
         maxHeap = [[-count, char] for char, count in hashmap.items() ] 
         
         heapq.heapify(maxHeap)
-        print(maxHeap)
+#         print(maxHeap)
         
         prev = None
     
