@@ -1,5 +1,5 @@
 # Write your MySQL query statement below
-WITH cte AS
+WITH cte AS 
 (SELECT
     *, 
     DATE_ADD(recordDate, INTERVAL -1 DAY) AS yesterdays_date, 
@@ -9,11 +9,12 @@ FROM
     Weather)
     
 
-SELECT 
+
+SELECT
     id
 FROM 
     cte
-WHERE 
+WHERE
     yesterdays_date = prev_recordDate
 AND
     temperature > prev_temp
